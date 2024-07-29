@@ -1,0 +1,7 @@
+#!/bin/sh
+# Author: 3nity
+# Run a program on the Intel GPU
+# Usage: run-on-cpu
+PCI_ADDR=pci-0000_00_02_0
+
+DRI_PRIME=$PCI_ADDR $@

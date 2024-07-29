@@ -1,0 +1,24 @@
+#!/bin/bash
+# Author: 3nity
+# Use at your own risk (it works fine)
+w Execute a program on the gpu
+# Usage: run-on-gpu <program> ...
+
+VLK_LAYER=NVIDIA_only
+GLX_VENDOR=nvidia
+DRI_ID=1
+
+
+function run_on_gpu {
+    # Set environment variables for NVIDIA GPU usage
+    export __GLX_VENDOR_LIBRARY_NAME=$GLX_VENDOR
+    export __NV_PRIME_RENDER_OFFLOAD=$DRI_ID
+    export __VK_LAYER_NV_optimus=$VLK_LAYER
+
+    # Execute the command with the set environment variables
+    "$@"
+}
+
+complete -F _run_on_gpu run_on_gpu 
+
+run_on_gpu "$@"
